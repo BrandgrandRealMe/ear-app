@@ -18,6 +18,8 @@ class MainWindow extends BrowserWindow {
       webPreferences: {
         nodeIntegration: c.settings.nodeIntegrationEnabled,
         preload: path.resolve(__dirname, '../src', 'ipcPreloader.js'),
+        preload: __dirname + '/preload.js',
+        serialPort: true
       }, 
     };
     if (c.settings.windowBackgroundColor) {

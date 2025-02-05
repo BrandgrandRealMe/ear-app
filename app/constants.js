@@ -1,7 +1,7 @@
 const Constants = {
   settings: {
-    appName: 'Leasingrechner',
-    appUrl: 'https://www.leasingrechnen.at', // without trailing slash!
+    appName: 'Ear (web)',
+    appUrl: 'https://earweb.bttl.xyz/', // without trailing slash!
     nodeIntegrationEnabled: false, // keep disabled unless you run into ipcRenderer-specific troubles
     enableDevMenu: false, // enable for dev-builds only!
     userAgentPostfixWindows: 'WindowsApp', // custom user agent postfixes to distinguish traffic in Analytics
@@ -16,6 +16,12 @@ const Constants = {
     usePhotonKitShell: false, // macOS: loads src/shellMacOS.html with PhotonKit instead of the appUrl.
     useWindowsShell: false,   // Win: use custom shell from src/shellWIndows.html
     useLinuxShell: false,     // all 3 require 'nodeIntegrationEnabled: true'.
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      serialPort: true
+    }
+  
   },
   mainWindow: {
     width: 600,
@@ -24,54 +30,54 @@ const Constants = {
     largeHeight: 860,
   },
   strings: {
-    open: 'Öffnen',
+    open: 'Open',
   },
   menu: {
     app: {
-      about: 'Über',
-      quit: 'Beenden',
-      hide: 'verbergen',
-      hideothers: 'Andere verbergen',
-      unhide: 'Alle anzeigen',
+      about: 'About',
+      quit: 'Quit', // Beenden
+      hide: 'Hide', // verbergen
+      hideothers: 'Hide Others', // Andere verbergen
+      unhide: 'Show All', // Alle anzeigen
     },
     file: {
-      label: 'Datei',
+      label: 'File', // Datei
     },
     edit: {
-      label: 'Bearbeiten',
-      undo: 'Rückgänging',
-      redo: 'Wiederholen',
-      cut: 'Ausschneiden',
-      copy: 'Kopieren',
-      paste: 'Einfügen',
-      selectall: 'Alles auswählen'
+      label: 'Edit', // Bearbeiten
+      undo: 'Undo', // Rückgänging
+      redo: 'Redo', // Wiederholen
+      cut: 'Cut', // Ausschneiden
+      copy: 'Copy', // Kopieren
+      paste: 'Paste', // Einfügen
+      selectall: 'Select All' // Alles auswählen
     },
     view: {
-      label: 'Ansicht',
-      fullscreen: 'Vollbild de-/aktivieren'
+      label: 'View', // Ansicht
+      fullscreen: 'Toggle Fullscreen' // Vollbild de-/aktivieren
     },
     window: {
-      label: 'Fenster',
-      minimize: 'Minimieren',
-      close: 'Schließen',
-      front: 'Alle in den Vordergrund',
+      label: 'Window', // Fenster
+      minimize: 'Minimize', // Minimieren
+      close: 'Close', // Schließen
+      front: 'Bring All to Front', // Alle in den Vordergrund
     },
     help: {
-      label: 'Hilfe',
-      contact: 'Kontakt'
+      label: 'Help', // Hilfe
+      contact: 'Contact' // Kontakt
     },
     leasing: {
-      label: 'Berechnen',
-      car: 'Kfz Leasing berechnen',
-      movables: 'Mobilien Leasing berechnen',
-      inquiry: 'Leasing Angebot anfordern',
+      label: 'Calculate', // Berechnen
+      car: 'Calculate Car Lease', // Kfz Leasing berechnen
+      movables: 'Calculate Movables Lease', // Mobilien Leasing berechnen
+      inquiry: 'Request Lease Offer', // Leasing Angebot anfordern
     },
   },
   touchBar: {
     label: 'Leasing',
-    car: 'Kfz Rechner',
-    movables: 'Mobilien Rechner',
-    inquiry: 'Angebot anfordern',
+    car: 'Car Calculator', // Kfz Rechner
+    movables: 'Movables Calculator', // Mobilien Rechner
+    inquiry: 'Request Offer', // Angebot anfordern
   }
 };
 

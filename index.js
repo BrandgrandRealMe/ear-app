@@ -54,7 +54,39 @@ function loadAppWindows(showLoader) {
   } else if (Helper.useLinuxShell()) {
     appPath = `file://${__dirname}/src/shellLinux.html`;
   }
-  mainWindow = new MainWindow(appPath, appIconPath, !showLoader);
+  
+  mainWindow = new MainWindow(appPath, appIconPath, !showLoader, {
+
+    webPreferences: {
+
+      nodeIntegration: true,
+
+      contextIsolation: false,
+
+      webviewTag: true,
+
+      serialPort: true,
+
+    }
+
+  });
+
+
+  // Add permission handler
+
+  mainWindow.webContents.session.setPermissionRequestHandler((webContents, permission, callback) => {
+
+    if (permission === 'serial') {
+
+      callback(true); // Allow serial port access
+
+    } else {
+
+      callback(false);
+
+    }
+
+  });
 
   // quit app when mainWindow is closed
   mainWindow.on('closed', () => app.quit());

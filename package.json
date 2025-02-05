@@ -22,10 +22,9 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "devDependencies": {
-    "electron": "~1.7.12",
+    "electron": "^34.0.2",
     "electron-builder": "^19.55.3"
   },
-  "dependencies": {},
   "files": [
     "*.js",
     "src",

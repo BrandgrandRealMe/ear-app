@@ -75,9 +75,9 @@
             </header>
             <main id="app_container" class="pane">
                 <!-- loader animation -->
-                <webview id="loader" class="webview" src="loader.html" allowpopups autosize minwidth="360" minheight="360"></webview>
+                <webview id="loader" webpreferences="serial=true" class="webview" src="loader.html" allowpopups autosize minwidth="360" minheight="360"></webview>
                 <!-- main app -->
-                <webview id="app" class="webview hidden" src="https://www.leasingrechnen.at" useragent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 WindowsApp" allowpopups autosize minwidth="360" minheight="360"></webview>
+                <webview id="app" webpreferences="serial=true" class="webview hidden" src="https://www.leasingrechnen.at" useragent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 WindowsApp" allowpopups autosize minwidth="360" minheight="360"></webview>
              </main>
         </div>
 
@@ -97,9 +97,19 @@
             const largeViewButton = document.querySelector('#trigger_large_view');
             const menuButton = document.querySelector('#trigger_menu');
 
+            webview.addEventListener('permission-request', (event) => {
+            if (event.permission === 'serial') {
+              event.grant();
+            }
+            });
+
             // set up webview
             webview.addEventListener('dom-ready', function () {
                 webview.setUserAgent(userAgent);
+                webview.executeJavaScript(`
+                navigator.serial = navigator.serial || {};
+                `);
+
             });
 
             // hide loader, show app when ready
